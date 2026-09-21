@@ -1,5 +1,8 @@
-class Menu1 {
+import '../cadastra_provedor.dart';
+
+class Menu1 extends CadastroProvedor {
   Menu1() {
-    print("Menu 1 escolhido");
+    var cadastro = CadastroProvedor();
+    cadastro.executar();
   }
 }
