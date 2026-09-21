@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'menus/menu1.dart';
-import 'menus/menu2.dart';
-import 'menus/menu3.dart';
+import 'Menus/menu1.dart';
+import 'Menus/menu2.dart';
+import 'Menus/menu3.dart';
 
 class MenuPrincipal {
   MenuPrincipal() {

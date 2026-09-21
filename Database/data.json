@@ -1,0 +1,96 @@
+{
+  "planos": [
+    {
+      "idPlano": 101,
+      "nome": "Fibra 300 Mega",
+      "velocidade": 300,
+      "mensalidade": 99.90
+    },
+    {
+      "idPlano": 102,
+      "nome": "Fibra 600 Mega",
+      "velocidade": 600,
+      "mensalidade": 149.90
+    }
+  ],
+  "clientes": [
+    {
+      "idCliente": 1,
+      "tipoPessoa": "Física",
+      "nomeCompleto": "Ana Silva",
+      "cpfCnpj": "12345678901",
+      "rg": "123456789",
+      "dataNascimento": "1992-05-15T00:00:00.000Z",
+      "dataCadastro": "2026-01-10T10:00:00.000Z",
+      "statusCliente": "Ativo",
+      "contato": {
+        "idContato": 1,
+        "telefonePrincipal": "11987654321",
+        "telefoneSecundario": "1133334444",
+        "email": "ana.silva@email.com",
+        "aceitaNotificacao": true
+      },
+      "enderecos": [
+        {
+          "idEndereco": 1,
+          "estado": "SP",
+          "tipoEndereco": "Residencial",
+          "cep": "01001000",
+          "logradouro": "Praça da Sé",
+          "numero": "100",
+          "complemento": "Apto 12",
+          "bairro": "Sé",
+          "cidade": "São Paulo"
+        }
+      ],
+      "contratos": [
+        {
+          "idContrato": 501,
+          "idPlano": 101,
+          "idEnderecoInstalacao": 1,
+          "dataAdesao": "2026-01-10T11:00:00.000Z",
+          "diaVencimentoFatura": 10
+        }
+      ]
+    },
+    {
+      "idCliente": 2,
+      "tipoPessoa": "Jurídica",
+      "nomeCompleto": "Tech Solutions LTDA",
+      "cpfCnpj": "98765432000199",
+      "rg": null,
+      "dataNascimento": null,
+      "dataCadastro": "2026-02-01T14:30:00.000Z",
+      "statusCliente": "Ativo",
+      "contato": {
+        "idContato": 2,
+        "telefonePrincipal": "11912345678",
+        "telefoneSecundario": null,
+        "email": "contato@techsolutions.com",
+        "aceitaNotificacao": false
+      },
+      "enderecos": [
+        {
+          "idEndereco": 2,
+          "estado": "SP",
+          "tipoEndereco": "Comercial",
+          "cep": "04538132",
+          "logradouro": "Avenida Brigadeiro Faria Lima",
+          "numero": "1500",
+          "complemento": "Sala 402",
+          "bairro": "Itaim Bibi",
+          "cidade": "São Paulo"
+        }
+      ],
+      "contratos": [
+        {
+          "idContrato": 502,
+          "idPlano": 102,
+          "idEnderecoInstalacao": 2,
+          "dataAdesao": "2026-02-01T15:00:00.000Z",
+          "diaVencimentoFatura": 20
+        }
+      ]
+    }
+  ]
+}

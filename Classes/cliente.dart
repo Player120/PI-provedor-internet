@@ -18,4 +18,6 @@ class Cliente {
     required this.dataCadastro,
     required this.statusCliente,
   });
+
+  static Object? fromJson(cliJson) {}
 }
