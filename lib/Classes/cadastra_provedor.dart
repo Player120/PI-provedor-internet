@@ -1,13 +1,13 @@
-import 'Classes/cliente.dart';
-import 'Classes/contato.dart';
-import 'Classes/contrato_assinatura.dart';
-import 'Classes/endereco.dart';
-import 'Classes/plano.dart';
+import 'cliente.dart';
+import 'contato.dart';
+import 'contrato_assinatura.dart';
+import 'endereco.dart';
+import 'plano.dart';
 
 class CadastroProvedor {
   void executar() {
     Cliente cliente = Cliente(
-      idCliente: 1,
+      idcliente: 1,
       tipoPessoa: 'PF',
       nomeCompleto: 'Ana Exemplo',
       cpfCnpj: '00000000000',

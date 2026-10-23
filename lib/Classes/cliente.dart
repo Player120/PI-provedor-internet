@@ -1,23 +1,36 @@
 class Cliente {
-  int idCliente;
+  int? idcliente;
   String tipoPessoa;
   String nomeCompleto;
   String cpfCnpj;
   String? rg;
   DateTime? dataNascimento;
-  DateTime dataCadastro;
+  DateTime? dataCadastro;
   String statusCliente;
 
   Cliente({
-    required this.idCliente,
+    this.idcliente,
     required this.tipoPessoa,
     required this.nomeCompleto,
     required this.cpfCnpj,
     this.rg,
-    this.dataNascimento,
+    required this.dataNascimento,
     required this.dataCadastro,
     required this.statusCliente,
   });
 
-  static Object? fromJson(cliJson) {}
+  @override
+  String toString() {
+    return 
+    """
+    =============================================================================================
+    --------------------------------------------------------------------------------------------
+    | [$idcliente] Nome: $nomeCompleto | Data de Nascimento: $dataNascimento | 
+    | Status do Cliente: $statusCliente |
+    | CPF/CNPJ: $cpfCnpj | RG: $rg |
+    | Tipo de Pessoa: $tipoPessoa | Data do Cadastro: $dataCadastro |
+    ---------------------------------------------------------------------------------------------
+    ==============================================================================================
+    """;
+  }
 }
