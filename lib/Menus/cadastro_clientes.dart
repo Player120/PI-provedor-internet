@@ -42,7 +42,7 @@ class CadastroClientes {
 
   // Dados do Contato
   String telefonePrincipal = "";
-  String? telefoneSecundario;
+  String telefoneSecundario = "";
   String email = "";
   bool? aceitaNotificacao;
 
@@ -115,24 +115,24 @@ class CadastroClientes {
 
   bool dadosPessoais() {
     print("--------------------------------------------------------------------");
-    stdout.write("Nome Completo: ");
+    stdout.write("Nome Completo (máx. 60 caracteres): ");
     nome = stdin.readLineSync()!.toUpperCase();
 
     stdout.write("Data de Nascimento (Digite no formato aaaa-mm-dd): ");
     dataNascimento = DateTime.tryParse(stdin.readLineSync()!);
 
-    stdout.write("Tipo de Pessoa (Fisica ou Juridica - NÃO COLOQUE ACENTO!): ");
+    stdout.write("Tipo de Pessoa (Fisica ou Juridica - NÃO COLOQUE ACENTO! (máx. 10 caracteres)): ");
     tipoPessoa = stdin.readLineSync()!.toUpperCase();
     print(tipoPessoa);
 
     switch (tipoPessoa) {
       case "FISICA":
-        stdout.write("CPF (sem pontuação e traço): ");
+        stdout.write("CPF (sem pontuação e traço  (máx. 14 caracteres)): ");
         cpfCnpj = stdin.readLineSync()!;
         break;
 
       case "JURIDICA":
-        stdout.write("CNPJ (sem pontuação, traço ou barra): ");
+        stdout.write("CNPJ (sem pontuação, traço ou barra (máx. 14 caracteres)): ");
         cpfCnpj = stdin.readLineSync()!;
         break;
 
@@ -141,11 +141,16 @@ class CadastroClientes {
         return false;
     }
 
-    stdout.write("RG (opcional, pode deixar em branco): ");
+    stdout.write("RG (opcional, pode deixar em branco (máx. 9 caracteres)): ");
     rg = stdin.readLineSync()!.toUpperCase();
 
     if (nome.isEmpty || dataNascimento == null || tipoPessoa.isEmpty || cpfCnpj.isEmpty) {
       print("Um ou mais campos obrigatórios estão em branco ou inválidos!");
+      return false;
+    }
+
+    if (nome.length > 60 || tipoPessoa.length > 10 || cpfCnpj.length > 14 || rg.length > 9) {
+      print("Um ou mais campos excedem o limite de caracteres permitidos!");
       return false;
     }
 
@@ -154,41 +159,56 @@ class CadastroClientes {
 
   bool dadosEndereco() {
     print("--------------------------------------------------------------------");
-    stdout.write("Logradouro: ");
+    stdout.write("Logradouro (máx. 45 caracteres): ");
     logradouro = stdin.readLineSync()!.toUpperCase();
 
-    stdout.write("Número: ");
+    stdout.write("Número (máx. 5 caracteres): ");
     numero = int.tryParse(stdin.readLineSync()!);
 
-    stdout.write("Complemento (deixe em branco se não se aplica): ");
+    stdout.write("Complemento (deixe em branco se não se aplica (máx. 45 caracteres)): ");
     complemento = stdin.readLineSync()!;
 
-    stdout.write("Bairro: ");
+    stdout.write("Bairro (máx. 45 caracteres): ");
     bairro = stdin.readLineSync()!.toUpperCase();
 
-    stdout.write("Cidade: ");
+    stdout.write("Cidade (máx. 45 caracteres): ");
     cidade = stdin.readLineSync()!.toUpperCase();
 
-    stdout.write("CEP (sem traço): ");
+    stdout.write("CEP (sem traço (máx. 8 caracteres)): ");
     cep = stdin.readLineSync()!;
 
-    stdout.write("Estado (use apenas a sigla de duas letras): ");
+    stdout.write("Estado (use apenas a sigla de duas letras (máx. 2 caracteres)): ");
     estado = stdin.readLineSync()!.toUpperCase();
 
-    stdout.write("Tipo de Endereço: ");
+    stdout.write("Tipo de Endereço (máx. 20 caracteres): ");
     tipoEndereco = stdin.readLineSync()!.toUpperCase();
 
     if (
-      logradouro.isEmpty || 
+      logradouro.isEmpty ||
       numero == null || 
       bairro.isEmpty || 
       cidade.isEmpty ||
       cep.isEmpty ||
       estado.isEmpty ||
-      tipoEndereco.isEmpty ||
-      estado.length > 2
+      tipoEndereco.isEmpty
     ) {
       print("Um ou mais campos obrigatórios estão em branco ou inválidos!");
+      return false;
+    }
+
+    String chequeNumero = numero.toString();
+
+    if (
+      logradouro.length > 45 || 
+      chequeNumero.length > 5 ||
+      complemento.length > 45 ||
+      bairro.length > 45 || 
+      cidade.length > 45 ||
+      cep.length > 8 ||
+      estado.length > 2 ||
+      tipoEndereco.length > 20
+    ) {
+      print("Um ou mais campos excedem o limite de caracteres permitidos!");
       return false;
     }
 
@@ -197,13 +217,13 @@ class CadastroClientes {
 
   bool dadosContato() {
     print("--------------------------------------------------------------------");
-    stdout.write("Telefone Principal: ");
+    stdout.write("Telefone Principal (máx. 11 caracteres): ");
     telefonePrincipal = stdin.readLineSync()!.toUpperCase();
 
-    stdout.write("Telefone Secundário (opcional, pode deixar em branco): ");
+    stdout.write("Telefone Secundário (opcional, pode deixar em branco (máx. 11 caracteres)): ");
     telefoneSecundario = stdin.readLineSync()!.toUpperCase();
 
-    stdout.write("E-Mail: ");
+    stdout.write("E-Mail (máx. 45 caracteres): ");
     email = stdin.readLineSync()!;
 
     stdout.write("Aceita ser notificado sobre atualizações e mudanças? (S para sim, qualquer outra coisa para não): ");
@@ -216,6 +236,11 @@ class CadastroClientes {
 
     if (telefonePrincipal.isEmpty || email.isEmpty) {
       print("Um ou mais campos obrigatórios estão em branco ou inválidos!");
+      return false;
+    }
+
+    if (telefonePrincipal.length > 11 || telefoneSecundario.length > 11 || email.length > 45) {
+      print("Um ou mais campos excedem o limite de caracteres permitidos!");
       return false;
     }
 
