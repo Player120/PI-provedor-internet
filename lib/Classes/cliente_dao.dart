@@ -18,6 +18,16 @@ class ClienteDao {
       var resultado = await conn.execute("SELECT * FROM clientes");
 
       for (var linha in resultado.rows) {
+        int id = int.parse(linha.colByName("idcliente").toString());
+        
+        var sql = "SELECT planos.nome, contratosassinaturas.vencimentoFatura FROM CLIENTES JOIN contratosassinaturas ON (contratosassinaturas.idcontrato = clientes.contratosAssinaturas_idcontrato) JOIN planos ON (planos.contratosAssinaturas_idcontrato = contratosassinaturas.idcontrato) WHERE clientes.idcliente = :idcliente";
+
+        var plano = await conn.execute(sql, {
+          "idcliente": id
+        });
+        String nomePlano = plano.rows.first.assoc()['nome'].toString();
+        String dataVencimento = plano.rows.first.assoc()['vencimentoFatura'].toString();
+
         lista.add(Cliente(
           idcliente: int.tryParse(linha.colByName("idcliente").toString()), 
           tipoPessoa: linha.colByName("tipoPessoa").toString(), 
@@ -26,7 +36,9 @@ class ClienteDao {
           rg: linha.colByName("rg").toString(),
           dataNascimento: DateTime.tryParse(linha.colByName("dataNascimento").toString()),
           dataCadastro: DateTime.tryParse(linha.colByName("dataCadastro").toString()), 
-          statusCliente: linha.colByName("statusCliente").toString()
+          statusCliente: linha.colByName("statusCliente").toString(),
+          nomePlano: nomePlano.toString(),
+          dataVencimento: DateTime.parse(dataVencimento)
         ));
       }
 

@@ -1,3 +1,6 @@
+import './plano.dart';
+import './contrato_assinatura.dart';
+
 class Cliente {
   int? idcliente;
   String tipoPessoa;
@@ -7,6 +10,8 @@ class Cliente {
   DateTime? dataNascimento;
   DateTime? dataCadastro;
   String statusCliente;
+  String? nomePlano;
+  DateTime? dataVencimento;
 
   Cliente({
     this.idcliente,
@@ -17,6 +22,8 @@ class Cliente {
     required this.dataNascimento,
     this.dataCadastro,
     required this.statusCliente,
+    this.nomePlano,
+    this.dataVencimento
   });
 
   @override
@@ -26,9 +33,9 @@ class Cliente {
     =============================================================================================
     --------------------------------------------------------------------------------------------
     | [$idcliente] Nome: $nomeCompleto | Data de Nascimento: $dataNascimento | 
-    | Status do Cliente: $statusCliente |
+    | Status do Cliente: $statusCliente | Próximo Vencimento: $dataVencimento |
     | CPF/CNPJ: $cpfCnpj | RG: $rg |
-    | Tipo de Pessoa: $tipoPessoa | Data do Cadastro: $dataCadastro |
+    | Plano: $nomePlano | Tipo de Pessoa: $tipoPessoa | Data do Cadastro: $dataCadastro |
     ---------------------------------------------------------------------------------------------
     ==============================================================================================
     """;

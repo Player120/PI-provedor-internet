@@ -53,6 +53,12 @@ delete from contratosassinaturas where idcontrato = 2;
 
 select LAST_INSERT_ID();
 
+select clientes.idcliente, clientes.nomeCompleto, clientes.contratosAssinaturas_idcontrato, planos.nome, contratosassinaturas.vencimentoFatura
+from clientes
+join contratosassinaturas on (contratosassinaturas.idcontrato = clientes.contratosAssinaturas_idcontrato)
+join planos on (planos.contratosAssinaturas_idcontrato = contratosassinaturas.idcontrato)
+where clientes.idcliente = 4;
+
 INSERT INTO enderecos (logradouro, numero, complemento, bairro, cidade, cep, estado, tipoEndereco) values
 ();
 
