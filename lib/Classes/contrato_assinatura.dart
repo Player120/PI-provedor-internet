@@ -1,21 +1,11 @@
-import 'cliente.dart';
-import 'endereco.dart';
-import 'plano.dart';
-
 class ContratoAssinatura {
-  int idContrato;
-  Cliente cliente;
-  Plano plano;
-  Endereco enderecoInstalacao;
-  DateTime dataAdesao;
-  int diaVencimentoFatura;
+  int? idcontrato;
+  DateTime? dataAdesao;
+  DateTime? vencimentoFatura;
 
   ContratoAssinatura({
-    required this.idContrato,
-    required this.cliente,
-    required this.plano,
-    required this.enderecoInstalacao,
+    this.idcontrato,
     required this.dataAdesao,
-    required this.diaVencimentoFatura,
+    required this.vencimentoFatura,
   });
 }

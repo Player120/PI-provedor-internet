@@ -1,16 +1,12 @@
-import 'cliente.dart';
-
 class Contato {
-  int idContato;
-  Cliente cliente;
+  int? idContato;
   String telefonePrincipal;
   String? telefoneSecundario;
   String email;
-  bool aceitaNotificacao;
+  bool? aceitaNotificacao;
 
   Contato({
-    required this.idContato,
-    required this.cliente,
+    this.idContato,
     required this.telefonePrincipal,
     this.telefoneSecundario,
     required this.email,

@@ -15,7 +15,7 @@ class Cliente {
     required this.cpfCnpj,
     this.rg,
     required this.dataNascimento,
-    required this.dataCadastro,
+    this.dataCadastro,
     required this.statusCliente,
   });
 

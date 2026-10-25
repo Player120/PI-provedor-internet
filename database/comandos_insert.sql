@@ -16,5 +16,46 @@ insert into clientes (
 	1, 1, 1
 );
 
+alter table planos
+drop column contatos_idcontato;
+
+alter table planos
+add column contratosAssinaturas_idcontrato int;
+
+alter table contatos
+drop column aceitaNotificacao;
+
+alter table contatos
+add column aceitaNotificacao bool not null;
+
+alter table planos
+add constraint fk_planos_contratosAssinaturas
+foreign key (contratosAssinaturas_idcontrato)
+references contratosassinaturas(idcontrato);
+
+update contatos set aceitaNotificacao = true where idcontato = 1;
+update clientes set nomeCompleto = "Nicolas Rewell Alves", rg = 2983434 where idcliente = 2;
+
+insert into planos (nome, velocidade, mensalidade, contratosAssinaturas_idcontrato) values
+	("Plano Diamante", 700, 159.9, 1);
+
 select * from enderecos;
 select * from clientes;
+select * from planos;
+select * from contratosassinaturas;
+select * from contatos;
+
+delete from enderecos where idendereco = 2;
+delete from contatos where idcontato = 2;
+delete from contratosassinaturas where idcontrato = 2;
+
+
+
+select LAST_INSERT_ID();
+
+INSERT INTO enderecos (logradouro, numero, complemento, bairro, cidade, cep, estado, tipoEndereco) values
+();
+
+
+
+

@@ -23,7 +23,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '65c1685d-96a6-11f1-b522-02505b025e04:1-172';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '65c1685d-96a6-11f1-b522-02505b025e04:1-199';
 
 --
 -- Table structure for table `clientes`
@@ -51,7 +51,7 @@ CREATE TABLE `clientes` (
   CONSTRAINT `fk_clientes_contatos1` FOREIGN KEY (`contatos_idcontato`) REFERENCES `contatos` (`idcontato`),
   CONSTRAINT `fk_clientes_contratosAssinaturas1` FOREIGN KEY (`contratosAssinaturas_idcontrato`) REFERENCES `contratosassinaturas` (`idcontrato`),
   CONSTRAINT `fk_clientes_enderecos` FOREIGN KEY (`enderecos_idendereco`) REFERENCES `enderecos` (`idendereco`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,7 +60,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Física','Rafael Zonta','123.456.789-11','123456789','2007-12-12','2020-11-09','Ativo',1,1,1);
+INSERT INTO `clientes` VALUES (1,'Física','Rafael Zonta','123.456.789-11','123456789','2007-12-12','2020-11-09','Ativo',1,1,1),(2,'JURIDICA','Nicolas Rewell Alves','83219','2983434','2007-10-22','2026-10-24','Ativo',3,3,3),(3,'FISICA','JOAO GABRIEL','4837932','012930','2005-04-11','2026-10-24','Ativo',4,4,4);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,9 +76,9 @@ CREATE TABLE `contatos` (
   `telefonePrincipal` varchar(11) NOT NULL,
   `telefoneSecundario` varchar(11) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
-  `aceitaNotificacao` varchar(45) NOT NULL,
+  `aceitaNotificacao` tinyint(1) NOT NULL,
   PRIMARY KEY (`idcontato`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `contatos` (
 
 LOCK TABLES `contatos` WRITE;
 /*!40000 ALTER TABLE `contatos` DISABLE KEYS */;
-INSERT INTO `contatos` VALUES (1,'00123456789','22987654321','rafael.zontarzb@gmail.com','Sim');
+INSERT INTO `contatos` VALUES (1,'00123456789','22987654321','rafael.zontarzb@gmail.com',1),(3,'7773212',NULL,'NICOLAS.WINDOWS@ANDROID.COM',1),(4,'204398',NULL,'JOAO.GABRIEL@GEMINI.GE.COM',1);
 /*!40000 ALTER TABLE `contatos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +103,7 @@ CREATE TABLE `contratosassinaturas` (
   `dataAdesao` date NOT NULL,
   `vencimentoFatura` date NOT NULL,
   PRIMARY KEY (`idcontrato`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `contratosassinaturas` (
 
 LOCK TABLES `contratosassinaturas` WRITE;
 /*!40000 ALTER TABLE `contratosassinaturas` DISABLE KEYS */;
-INSERT INTO `contratosassinaturas` VALUES (1,'2020-11-10','2027-12-30');
+INSERT INTO `contratosassinaturas` VALUES (1,'2020-11-10','2027-12-30'),(3,'2026-10-24','2026-11-24'),(4,'2026-10-24','2026-11-24');
 /*!40000 ALTER TABLE `contratosassinaturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ CREATE TABLE `enderecos` (
   `bairro` varchar(45) NOT NULL,
   `cidade` varchar(45) NOT NULL,
   PRIMARY KEY (`idendereco`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `enderecos` (
 
 LOCK TABLES `enderecos` WRITE;
 /*!40000 ALTER TABLE `enderecos` DISABLE KEYS */;
-INSERT INTO `enderecos` VALUES (1,'SP','Casa','12345678','Rua Brasil','1994',NULL,'Jardim Paulista','São Paulo');
+INSERT INTO `enderecos` VALUES (1,'SP','Casa','12345678','Rua Brasil','1994',NULL,'Jardim Paulista','São Paulo'),(3,'RS','PREDIO COMERCIAL','932891','AVENIDA CLAUDE','22',NULL,'JARDIM GEMINI','COPILOTVILLE'),(4,'GE','MANSAO','32190','RUA GEMINI','2022',NULL,'ULTRA GEMINI 2','GEMINI CITY');
 /*!40000 ALTER TABLE `enderecos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,11 +159,11 @@ CREATE TABLE `planos` (
   `nome` varchar(45) NOT NULL,
   `velocidade` int NOT NULL,
   `mensalidade` double NOT NULL,
-  `contatos_idcontato` int NOT NULL,
+  `contratosAssinaturas_idcontrato` int DEFAULT NULL,
   PRIMARY KEY (`idplano`),
-  KEY `fk_planos_contatos1_idx` (`contatos_idcontato`),
-  CONSTRAINT `fk_planos_contatos1` FOREIGN KEY (`contatos_idcontato`) REFERENCES `contatos` (`idcontato`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `fk_planos_contratosAssinaturas` (`contratosAssinaturas_idcontrato`),
+  CONSTRAINT `fk_planos_contratosAssinaturas` FOREIGN KEY (`contratosAssinaturas_idcontrato`) REFERENCES `contratosassinaturas` (`idcontrato`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,6 +172,7 @@ CREATE TABLE `planos` (
 
 LOCK TABLES `planos` WRITE;
 /*!40000 ALTER TABLE `planos` DISABLE KEYS */;
+INSERT INTO `planos` VALUES (1,'Plano Diamante',700,159.9,1),(2,'Plano Empresarial',6000,799.9,3),(3,'Plano Fibra Turbo',1000,199.9,4);
 /*!40000 ALTER TABLE `planos` ENABLE KEYS */;
 UNLOCK TABLES;
 SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
@@ -185,4 +186,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-23 13:02:35
+-- Dump completed on 2026-10-24 23:29:53

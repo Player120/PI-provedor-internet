@@ -1,5 +1,6 @@
 import 'dart:io';
 import '../Menus/lista_clientes.dart';
+import '../Menus/cadastro_clientes.dart';
 import '../Menus/menu3.dart';
 
 import './cliente_dao.dart';
@@ -7,6 +8,7 @@ import './cliente_dao.dart';
 class MenuPrincipal {
   var clienteDao = ClienteDao();
   var listaClientes = ListaClientes();
+  var cadastroClientes = CadastroClientes();
 
   MenuPrincipal() {
     executar();
@@ -43,15 +45,17 @@ class MenuPrincipal {
         return true;
 
       case "2":
-        
+        await cadastroClientes.cadastrar();
         return true;
-        
+
       case "3":
         Menu3;
         return true;
+
       case "4":
         print("Encerrando!");
         return false;
+        
       default:
         print("Opção inválida!");
         return true;

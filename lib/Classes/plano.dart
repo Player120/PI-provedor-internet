@@ -1,13 +1,15 @@
 class Plano {
-  int idPlano;
+  int? idPlano;
   String nome;
-  int velocidade;
-  double mensalidade;
+  int? velocidade;
+  double? mensalidade;
+  int? idContrato;
 
   Plano({
-    required this.idPlano,
+    this.idPlano,
     required this.nome,
     required this.velocidade,
     required this.mensalidade,
+    this.idContrato
   });
 }
