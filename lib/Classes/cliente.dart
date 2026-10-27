@@ -1,6 +1,3 @@
-import './plano.dart';
-import './contrato_assinatura.dart';
-
 class Cliente {
   int? idcliente;
   String tipoPessoa;
@@ -23,13 +20,12 @@ class Cliente {
     this.dataCadastro,
     required this.statusCliente,
     this.nomePlano,
-    this.dataVencimento
+    this.dataVencimento,
   });
 
   @override
   String toString() {
-    return 
-    """
+    return """
     =============================================================================================
     --------------------------------------------------------------------------------------------
     | [$idcliente] Nome: $nomeCompleto | Data de Nascimento: $dataNascimento | 
