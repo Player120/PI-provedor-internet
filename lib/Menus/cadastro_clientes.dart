@@ -1,6 +1,3 @@
-// Os getters e setters são necessários para o encapsulamento dos atributos.
-// ignore_for_file: unnecessary_getters_setters
-
 import 'dart:io';
 
 import '../Classes/cliente_dao.dart';
